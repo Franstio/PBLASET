@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ruangans', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('ruangan', function (Blueprint $table) {
+            $table->string("Nama_Ruangan",64);
+            $table->integer("Kode_Lantai",11);
+            $table->string("Kode_Ruangan",16);
+            $table->foreign("Kode_Lantai")->references("id")->on("lantai")
+            ->constrained()
+            ->onUpdate("cascade")
+            ->onDelete("cascase");
+            $table->primary("Kode_Ruangan");
         });
     }
 

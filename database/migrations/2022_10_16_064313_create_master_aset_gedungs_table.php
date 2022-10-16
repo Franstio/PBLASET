@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('master_aset_gedungs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('master_aset_gedung', function (Blueprint $table) {
+            $table->string("Nama_Gedung",24);
+            $table->primary("Kode_Gedung",64);
         });
     }
-
     /**
      * Reverse the migrations.
      *

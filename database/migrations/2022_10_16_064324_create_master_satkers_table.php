@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('master_satkers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('master_satker', function (Blueprint $table) {
+            $table->string("Nama_Satker",24);
+            $table->primary("Kode_Kode_Satker",128);
         });
     }
 
