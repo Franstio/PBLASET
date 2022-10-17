@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('master_satker', function (Blueprint $table) {
             $table->string("Nama_Satker",24);
-            $table->primary("Kode_Kode_Satker",128);
+            $table->string("Kode_Satker",128);
+            $table->primary("Kode_Satker");
         });
     }
 

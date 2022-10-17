@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gedungs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('ruangan', function (Blueprint $table) {
+            $table->string("Nama_Gedung",64);
+            $table->integer("id",11) 
+            $table->primary("id");
+            
         });
     }
 

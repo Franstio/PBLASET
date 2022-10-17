@@ -23,13 +23,17 @@ return new class extends Migration
             $table->decimal("Nilai_Perolehan",10,2);
             $table->decimal("Nilai_Penyusutan",10,2);
             $table->decimal("Nilai_Buku",10,2);
-            $table->decimal("Kuantitas",10,2);
+            $table->decimal("Kuantitas",8,2);
             $table->integer("jml_foto",10,2);
             $table->string("Status_Penggunaan",128);
             $table->string("Status_Pengelolaan",128);
             $table->string("No_PSP",24);
             $table->date("Tgl_PSP");
             $table->integer("Jumlah_KIB",11);
+            $table->string("Kode_Barang",16);
+            $table->string("Kode_Ruangan",16);
+            $table->string("Kode_Satker",24);
+            $table->integer("id",11);
             $table->foreign("Kode_Ruangan")->references("Kode_ruangan")->on("ruangan")
             ->constrained()
             ->onUpdate("cascade")
