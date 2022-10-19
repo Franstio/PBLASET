@@ -56,6 +56,7 @@ return new class extends Migration
             $table->primary("Id",11);
         })
         ;
+    }
     /**
      * Reverse the migrations.
      *
