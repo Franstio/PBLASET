@@ -11,5 +11,5 @@ class Lantai extends Model
     protected $table = "lantai";
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = [ "id","no_Lantai"."Kode_Gedung" ];
+    protected $fillable = [ "no_Lantai"."Kode_Gedung" ];
 }

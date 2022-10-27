@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('lantai', function (Blueprint $table) {
-            $table->integer("no_lantai",11);
-            $table->integer("id",11);
-            $table->integer("Kode_Gedung",11);
-            $table->foreign("Kode_Gedung")->references("Kode_Gedung")->on("Gedung")
+            $table->integer("no_lantai");
+            $table->integer("id",true);
+            $table->integer("Kode_Gedung");
+            $table->foreign("Kode_Gedung")->references("id")->on("gedung")
             ->constrained()
             ->onUpdate("cascade")
-            ->onDelete("cascase");
-            $table->primary("id");
+            ->onDelete("cascade");
         });
     }
 

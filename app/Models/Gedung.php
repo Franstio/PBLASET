@@ -11,5 +11,5 @@ class Gedung extends Model
     protected $table = "gedung";
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = [ "id","Nama_Gedung" ];
+    protected $fillable = [ "Nama_Gedung" ];
 }

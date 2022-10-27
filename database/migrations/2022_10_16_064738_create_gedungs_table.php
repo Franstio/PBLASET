@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ruangan', function (Blueprint $table) {
+        Schema::create('gedung', function (Blueprint $table) {
             $table->string("Nama_Gedung",64);
-            $table->integer("id",11); 
-            $table->primary("id");
+            $table->integer("id",true);
         });
     }
 

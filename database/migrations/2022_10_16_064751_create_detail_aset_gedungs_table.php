@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('master_aset_barang', function (Blueprint $table) {
-            $table->integer("NUP",11);
+        Schema::create('detail_aset_gedung', function (Blueprint $table) {
+            $table->integer("id",true);
+            $table->integer("NUP");
             $table->string("Kondisi",16);
+            $table->string("Jenis",64);
             $table->date("Tgl_Rekam_Pertama");
             $table->date("Tgl_Perolehan");
             $table->decimal("Nilai_Perolehan_Pertama",10,2);
@@ -24,32 +26,36 @@ return new class extends Migration
             $table->decimal("Nilai_Penyusutan",10,2);
             $table->decimal("Nilai_Buku",10,2);
             $table->decimal("Kuantitas",8,2);
-            $table->integer("jml_foto",10,2);
+            $table->integer("jml_foto");
             $table->string("Status_Penggunaan",128);
             $table->string("Status_Pengelolaan",128);
             $table->string("No_PSP",24);
             $table->date("Tgl_PSP");
-            $table->integer("Jumlah_KIB",11);
-            $table->string("Kode_Barang",16);
-            $table->string("Kode_Ruangan",16);
+            $table->integer("Jumlah_KIB");
+            $table->string("Dokumen",16);
+            $table->Decimal("Luas_Bangunan",10,2);
+            $table->Decimal("Luas_Dasar_Bangunan",10,2);
+            $table->integer("Jumlah_Lantai");
+            $table->string("Jalan",128);
+            $table->string("Kode_Kab_Kota",24);
+            $table->string("Uraian_Kab_Kota",48);
+            $table->string("Kode_Pos",8);
+            $table->integer("SBSK");
+            $table->integer("Optimalisasi");
+            $table->string("Status_SBSK",64);
+            $table->string("Kode_Gedung",24);
             $table->string("Kode_Satker",24);
-            $table->integer("id",11);
-            $table->foreign("Kode_Ruangan")->references("Kode_ruangan")->on("ruangan")
-            ->constrained()
-            ->onUpdate("cascade")
-            ->onDelete("cascase");
             $table->foreign("Kode_Satker")->references("Kode_Satker")->on("master_satker")
             ->constrained()
             ->onUpdate("cascade")
-            ->onDelete("cascase");
-            $table->foreign("Kode_Barang")->references("Kode_Barang")->on("master_aset_barang")
+            ->onDelete("cascade");
+            $table->foreign("Kode_Gedung")->references("Kode_Gedung")->on("master_aset_gedung")
             ->constrained()
             ->onUpdate("cascade")
-            ->onDelete("cascase");
-            $table->primary("Id",11);
-        });
+            ->onDelete("cascade");
+        })
+        ;
     }
-
     /**
      * Reverse the migrations.
      *
@@ -57,6 +63,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_aset_barangs');
+        Schema::dropIfExists('detail_aset_gedungs');
     }
 };

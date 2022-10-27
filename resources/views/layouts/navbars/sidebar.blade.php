@@ -79,16 +79,16 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link active" href="index.html"> <i class="ni ni-tv-2 text-primary"></i> Dashboard </a>
+                    <a class="nav-link active" href="{{ route("dashboard") }}"> <i class="ni ni-tv-2 text-primary"></i> Dashboard </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pengelolaan.html"> <i class="ni ni-planet text-blue"></i> Pengelolaan </a>
+                    <a class="nav-link" href="{{ route("pengolahan") }}"> <i class="ni ni-planet text-blue"></i> Pengelolaan </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="l_ruangan.html"> <i class="ni ni-pin-3 text-orange"></i> List Ruangan </a>
+                    <a class="nav-link" href="{{ route("daftar-ruangan") }}"> <i class="ni ni-pin-3 text-orange"></i> List Ruangan </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="DBR.html"> <i class="ni ni-single-02 text-yellow"></i> Daftar Barang Ruangan </a>
+                    <a class="nav-link" href="{{ route("DBR") }}"> <i class="ni ni-single-02 text-yellow"></i> Daftar Barang Ruangan </a>
                 </li>
             </ul>
         </div>

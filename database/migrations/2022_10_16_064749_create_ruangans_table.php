@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('ruangan', function (Blueprint $table) {
             $table->string("Nama_Ruangan",64);
-            $table->integer("Kode_Lantai",11);
+            $table->integer("Kode_Lantai");
             $table->string("Kode_Ruangan",16);
             $table->foreign("Kode_Lantai")->references("id")->on("lantai")
             ->constrained()
             ->onUpdate("cascade")
-            ->onDelete("cascase");
+            ->onDelete("cascade");
             $table->primary("Kode_Ruangan");
         });
     }

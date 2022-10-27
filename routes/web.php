@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DBRController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PengolahanController;
+use App\Http\Controllers\RuanganController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -33,5 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('icons', function () {return view('pages.icons');})->name('icons');
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+    //Route For PBL-ASET
+    Route::get("dashboard",[DashboardController::class,'index'])->name("dashboard");
+    Route::get("pengolahan",[PengolahanController::class,'list'])->name("pengolahan");
+    Route::get("DBR",[DBRController::class,"index"])->name("DBR");
+    Route::get("daftar-ruangan",[RuanganController::class,"index"])->name("daftar-ruangan");
 });
 
