@@ -9,7 +9,7 @@ class MasterAsetBarang extends Model
 {
     use HasFactory;
     protected $table = "master_aset_barang";
-    protected $primaryKey = 'Kode_Barang';
+    //protected $primaryKey = 'Kode_Barang';
     public $timestamps = false;
-    protected $fillable = [ "Kode_Barang","Merk_Tipe"."Nama_Barang" ];
+    protected $fillable = [ "Kode_Barang","Merk_Tipe","Nama_Barang" ];
 }

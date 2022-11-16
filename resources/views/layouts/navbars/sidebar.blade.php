@@ -14,7 +14,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
                         </span>
                     </div>
                 </a>
@@ -89,6 +89,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("DBR") }}"> <i class="ni ni-single-02 text-yellow"></i> Daftar Barang Ruangan </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("master-aset-barang-index") }}"> <i class="ni ni-single-02 text-blue"></i> Data Master </a>
                 </li>
             </ul>
         </div>

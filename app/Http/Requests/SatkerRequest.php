@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AsetBarangRequest extends FormRequest
+class SatkerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class AsetBarangRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return true;
     }
 
     /**
@@ -24,8 +24,7 @@ class AsetBarangRequest extends FormRequest
     public function rules()
     {
         return [
-            "Kode_Barang" => "required",
-
+            //
         ];
     }
 }
