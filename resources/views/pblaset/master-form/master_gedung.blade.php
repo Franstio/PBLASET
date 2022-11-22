@@ -15,9 +15,9 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $name }}</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{{ route("master.satker") }}">Master Satker</a>
-                            <a class="dropdown-item" href="{{ route("master-aset-barang-index") }}">Master Aset Barang</a>
-                            <a class="dropdown-item" href="{{ route("master.gedung") }}">Master Aset Gedung</a>
-                        </div>
+                            <a class="dropdown-item" href="{{ route("master-aset-barang-index") }}">Master Barang</a>
+                            <a class="dropdown-item" href="{{ route("master.gedung") }}">Master Gedung</a>
+                       </div>
                     </div>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">
                         Tambah Data
@@ -26,19 +26,19 @@
                     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form class="text-center border border-light p-5" action="{{ route("tambah-master-aset-barang") }}" method="POST">
+                                <form class="text-center border border-light p-5" action="{{ route("master.gedung.create") }}" method="POST">
 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Master Aset Barang</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Master Aset Gedung</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <!-- Default form contact -->
-                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Kode_Barang" placeholder="Kode Barang">
-                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Nama_Barang" placeholder="Nama Barang">
-                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Merk_Tipe" placeholder="Merk/Tipe Barang">
+                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Kode_Gedung" placeholder="Kode Gedung">
+                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Nama_Gedung" placeholder="Nama Gedung">
+                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" name="Merk_Tipe" placeholder="Merk/Tipe Gedung">
                                     <!-- Default form contact -->
                                 </div>
                                 <div class="modal-footer">
@@ -59,7 +59,7 @@
         <!-- Editable table -->
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-                Master Asset Barang
+                Master Aset Gedung
             </h3>
             <div class="card-body">
                 <div class="table-editable">
@@ -67,8 +67,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th class="text-center">Kode Barang</th>
-                                <th class="text-center">Nama Barang</th>
+                                <th class="text-center">Kode Gedung</th>
+                                <th class="text-center">Nama Gedung</th>
                                 <th class="text-center">Merk Tipe</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -87,16 +87,16 @@
             <form id='formEdit' class="text-center border border-light p-5" action="" method="POST">
                 @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Master Barang</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Master Aset Gedung</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <!-- Default form contact -->
-                    <input type="text" id="kode_barang" name="Kode_Barang" class="form-control mb-4" placeholder="Kode Barang">
-                    <input type="text" id="nama_barang" name="Nama_Barang" class="form-control mb-4" placeholder="Nama Barang">
-                    <input type="text" id="merk_tipe" name="Merk_Tipe" class="form-control mb-4" placeholder="Merk/Tipe Barang">
+                    <input type="text" id="kode_gedung" name="Kode_gedung" class="form-control mb-4" placeholder="Kode Gedung">
+                    <input type="text" id="nama_gedung" name="Nama_gedung" class="form-control mb-4" placeholder="Nama Gedung">
+                    <input type="text" id="merk_tipe" name="Merk_Tipe" class="form-control mb-4" placeholder="Merk/Tipe Gedung">
                 <!-- Default form contact -->
             </div>
             <div class="modal-footer">
@@ -119,19 +119,19 @@
         var table = $('#tbl').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ route('get-master-barang') }}"
+            , ajax: "{{ route('master.gedung.read') }}"
             , columns: [
                 {
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: "Kode_Barang"
-                    ,name: 'Kode_Barang'
+                    data: "Kode_Gedung"
+                    ,name: 'Kode_Gedung'
                 }
                 , {
-                    data: 'Nama_Barang'
-                    , name: 'Nama_Barang'
+                    data: 'Nama_Gedung'
+                    , name: 'Nama_Gedung'
                 },
                 {
                     data: "Merk_Tipe",
@@ -149,18 +149,18 @@
     });
     function Edit(data)
     {
-        var route = "{{ route('update-master-aset-barang',"test") }}";
-        route = route.replace("test",data.Kode_Barang);
+        var route = "{{ route('master.gedung.update',"test") }}";
+        route = route.replace("test",data.Kode_Gedung);
         console.log(route);
         $("#formEdit").attr("action",route);
-        $("#nama_barang").val(data.Nama_Barang);
-        $("#kode_barang").val(data.Kode_Barang);
+        $("#nama_gedung").val(data.Nama_Gedung);
+        $("#kode_gedung").val(data.Kode_Gedung);
         $("#merk_tipe").val(data.Merk_Tipe);
         $("#EditModal").modal("show");
     }
     function Delete(data)
     {
-        var route = "{{ route('delete-master-aset-barang',"test") }}";
+        var route = "{{ route('master.gedung.delete',"test") }}";
         route = route.replace("test",data);
         $.ajax({
             url : route,

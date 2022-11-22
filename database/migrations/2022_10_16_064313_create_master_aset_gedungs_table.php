@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('master_aset_gedung', function (Blueprint $table) {
             $table->string("Nama_Gedung",24);
             $table->string("Kode_Gedung",24);
+            $table->string("Merk_Tipe",32);
             $table->primary("Kode_Gedung");
         });
     }

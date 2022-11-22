@@ -42,7 +42,9 @@ return new class extends Migration
             $table->string("Kode_Pos",8);
             $table->integer("SBSK");
             $table->integer("Optimalisasi");
-            $table->string("Status_SBSK",64);
+            $table->string("Status_SBSN",64);
+            $table->string("Uraian_Provinsi",128);
+            $table->string("Kode_Provinsi",64);
             $table->string("Kode_Gedung",24);
             $table->string("Kode_Satker",24);
             $table->foreign("Kode_Satker")->references("Kode_Satker")->on("master_satker")

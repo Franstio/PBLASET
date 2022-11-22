@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PengolahanController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\AsetBarangController;
+use App\Http\Controllers\AsetGedungController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\testing;
 use Illuminate\Support\Facades\Route;
@@ -60,4 +61,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('satker/read',[SatkerController::class,"read"])->name("master.satker.read");
     Route::post('satker/update/{kode_satker}',[SatkerController::class,"update"])->name("master.satker.update");
     Route::delete('satker/delete/{kode_satker}',[SatkerController::class,'delete'])->name('master.satker.delete');
+
+
+    Route::get('gedung',[AsetGedungController::class,"master_index"])->name("master.gedung");
+    Route::post('gedung/create',[AsetGedungController::class,"tambah_data_master"])->name("master.gedung.create");
+    Route::get('gedung/read',[AsetGedungController::class,"get_data_master"])->name("master.gedung.read");
+    Route::post('gedung/update/{kode_gedung}',[AsetGedungController::class,"update_data_master"])->name("master.gedung.update");
+    Route::delete('gedung/delete/{kode_gedung}',[AsetGedungController::class,'delete_data_master'])->name('master.gedung.delete');
+
 });

@@ -8,11 +8,11 @@
             <div class="dropdown">
                 <!-- Button trigger modal -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master Satker</button>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $name }}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route("master.satker") }}">Master Satker</a>
-                        <a class="dropdown-item" href="{{ route("master-aset-barang-index") }}">Master Barang</a>
-                        <a class="dropdown-item" href="mastergedung.html">Master Gedung</a>
+                        <a class="dropdown-item" href="{{ route("master-aset-barang-index") }}">Master Aset Barang</a>
+                        <a class="dropdown-item" href="{{ route("master.gedung") }}">Master Aset Gedung</a>
                     </div>
                 </div>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">

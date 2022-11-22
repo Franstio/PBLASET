@@ -18,7 +18,8 @@ class SatkerController extends Controller
     }
     public function index()
     {
-        return view("pblaset.master-form.master_satker");
+        $name = "Master Satker";
+        return view("pblaset.master-form.master_satker",compact("name"));
     }
     public function create(SatkerRequest $request)
     {

@@ -17,7 +17,8 @@ class AsetBarangController extends Controller
     }
     public function master_index()
     {
-        return view("pblaset.master-form.master_barang");
+        $name=  "Master Aset Barang";
+        return view("pblaset.master-form.master_barang",compact("name"));
     }
     public function get_data_master(Request $request)
     {
