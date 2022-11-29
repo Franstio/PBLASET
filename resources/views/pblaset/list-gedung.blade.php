@@ -53,11 +53,15 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>ID</th>
                             <th class="text-center">Nama Gedung</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -105,7 +109,8 @@
             , columns: [{
                     data: 'DT_RowIndex'
                     , name: 'DT_RowIndex'
-                }
+                },
+                {data:"id",name:"id"}
                 , {
                     data: "Nama_Gedung"
                     , name: 'Nama_Gedung'

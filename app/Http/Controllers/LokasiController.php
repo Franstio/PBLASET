@@ -30,7 +30,7 @@ class LokasiController extends Controller
     public function ReadGedung(Request $req)
     {
         $res = $this->service->ReadGedung($req);
-        return response()->json($res);
+        return $res;
     }
     public function DeleteGedung(string $Kode_Gedung)
     {
