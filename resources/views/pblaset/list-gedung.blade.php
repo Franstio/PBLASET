@@ -68,7 +68,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="frmEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,15 +79,15 @@
             </div>
             <div class="modal-body">
                 <!-- Default form contact -->
-                <form id="frm2" class="text-center border border-light p-5" action="#!" method="POST">
+                <form id="frmEdit" class="text-center border border-light p-5" action="#!" method="POST">
                     @csrf
-                    <input type="text" id="defaultContactFormName" id="Nama_Gedung" class="form-control mb-4" name="Nama_Gedung" placeholder="Nama Gedung">
+                    <input type="text"  id="nama_gedung" class="form-control mb-4" name="Nama_Gedung" placeholder="Nama Gedung">
                 </form>
                 <!-- Default form contact -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" form="frm2" class="btn btn-primary" value="Edit Data" />
+                <input type="submit" form="frmEdit" class="btn btn-primary" value="Edit Data" />
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@
         var route = "{{ route("lokasi.gedung.update","test") }}";
         route = route.replace("test", data.id);
         $("#frmEdit").attr("action", route);
-        $("#nama_gedung").val(data.id);
+        $("#nama_gedung").val(data.Nama_Gedung);
         $("#EditModal").modal("show");
     }
 
