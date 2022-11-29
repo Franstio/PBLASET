@@ -4,7 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DBRController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PengolahanController;
-use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\AsetBarangController;
 use App\Http\Controllers\AsetGedungController;
 use App\Http\Controllers\SatkerController;
@@ -47,7 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("dashboard",[DashboardController::class,'index'])->name("dashboard");
     Route::get("pengolahan",[PengolahanController::class,'list'])->name("pengolahan");
     Route::get("DBR",[DBRController::class,"index"])->name("DBR");
-    Route::get("daftar-ruangan",[RuanganController::class,"index"])->name("daftar-ruangan");
 
     Route::get("aset-barang/master",[AsetBarangController::class,"master_index"])->name("master-aset-barang-index");
     Route::post('aset-barang/master/create',[AsetBarangController::class,"tambah_data_master"])->name("tambah-master-aset-barang");
@@ -68,5 +67,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('gedung/read',[AsetGedungController::class,"get_data_master"])->name("master.gedung.read");
     Route::post('gedung/update/{kode_gedung}',[AsetGedungController::class,"update_data_master"])->name("master.gedung.update");
     Route::delete('gedung/delete/{kode_gedung}',[AsetGedungController::class,'delete_data_master'])->name('master.gedung.delete');
+
+    Route::get("lokasi",[LokasiController::class,"index"])->name("lokasi");
+    Route::post("lokasi/gedung",[LokasiController::class,"CreateGedung"])->name("lokasi.gedung.create");
+    Route::get("lokasi/gedung/read",[LokasiController::class,"ReadGedung"])->name("lokasi.gedung.read");
+    Route::post("lokasi/gedung/update/{kode_gedung}",[LokasiController::class,"UpdateGedung"])->name("lokasi.gedung.update");
+    Route::delete("lokasi/gedung/delete/{kode_gedung}",[LokasiController::class,"DeleteGedung"])->name("lokasi.gedung.delete");
 
 });

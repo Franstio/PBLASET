@@ -9,7 +9,6 @@ class Gedung extends Model
 {
     use HasFactory;
     protected $table = "gedung";
-    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [ "Nama_Gedung" ];
 }

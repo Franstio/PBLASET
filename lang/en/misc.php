@@ -7,5 +7,6 @@ return [
     "daftar-ruangan" => "Daftar Ruangan",
     "master-aset-barang-index" => "Data Master Barang",
     "master.satker"=>"Data Satker",
-    "home" => "Home"
+    "home" => "Home",
+    "lokasi" => "Daftar Lokasi"
 ];
