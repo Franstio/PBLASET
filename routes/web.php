@@ -68,10 +68,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('gedung/update/{kode_gedung}',[AsetGedungController::class,"update_data_master"])->name("master.gedung.update");
     Route::delete('gedung/delete/{kode_gedung}',[AsetGedungController::class,'delete_data_master'])->name('master.gedung.delete');
 
-    Route::get("lokasi",[LokasiController::class,"index"])->name("lokasi");
-    Route::post("lokasi/gedung",[LokasiController::class,"CreateGedung"])->name("lokasi.gedung.create");
+    Route::get("lokasi/gedung",[LokasiController::class,"index"])->name("lokasi");
+    Route::post("lokasi/gedung/create",[LokasiController::class,"CreateGedung"])->name("lokasi.gedung.create");
     Route::get("lokasi/gedung/read",[LokasiController::class,"ReadGedung"])->name("lokasi.gedung.read");
     Route::post("lokasi/gedung/update/{kode_gedung}",[LokasiController::class,"UpdateGedung"])->name("lokasi.gedung.update");
     Route::delete("lokasi/gedung/delete/{kode_gedung}",[LokasiController::class,"DeleteGedung"])->name("lokasi.gedung.delete");
 
+    Route::get("lokasi/{nama_gedung}-{kode_gedung}/lantai",[LokasiController::class,"index_lantai"])->name("lokasi.lantai");
+    Route::post("lokasi/{nama_gedung}-{kode_gedung}/lantai/create",[LokasiController::class,"CreateLantai"])->name("lokasi.lantai.create");
+    Route::get("lokasi/{nama_gedung}-{kode_gedung}/lantai/read",[LokasiController::class,"ReadLantai"])->name("lokasi.lantai.read");
+    Route::post("lokasi/{nama_gedung}-{kode_gedung}/lantai/update/{id}",[LokasiController::class,"UpdateLantai"])->name("lokasi.lantai.update");
+    Route::delete("lokasi/{nama_gedung}-{kode_gedung}/lantai/delete/{id}",[LokasiController::class,"DeleteLantai"])->name("lokasi.lantai.delete");
+
+    Route::get("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan",[LokasiController::class,"index_ruangan"])->name("lokasi.ruangan");
+    Route::post("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/create",[LokasiController::class,"CreateRuangan"])->name("lokasi.ruangan.create");
+    Route::get("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/read",[LokasiController::class,"ReadRuangan"])->name("lokasi.ruangan.read");
+    Route::post("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/update/{kode_ruangan}",[LokasiController::class,"UpdateRuangan"])->name("lokasi.ruangan.update");
+    Route::delete("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/delete/{kode_ruangan}",[LokasiController::class,"DeleteRuangan"])->name("lokasi.ruangan.delete");
 });

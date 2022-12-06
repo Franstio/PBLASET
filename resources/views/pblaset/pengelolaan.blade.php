@@ -32,40 +32,109 @@
                     <a class="btn btn-info" href="#" role="button">Import Data</a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div class="modal w-100 fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg w-100" role="modal">
+                            <div class="modal-content w-100">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Tambah Aset Barang</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body w-100">
                                     <!-- Default form contact -->
-                                    <form class="text-center border border-light p-5" action="#!">
-                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="No">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Satker">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Satker">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Barang">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Ruangan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Barang">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="NUP">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Merk/Tipe">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Tgl Rekam Pertama">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Tgl Perolehan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Perolehan Pertama">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Mutasi">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Perolehan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Penyusutan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Buku">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="KUANTITAS">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Jml Foto">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Status Penggunaan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Status Pengelolaan">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="No PSP">
-                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Jumlah KIB">
-                                    </form>
+                                    <div id="apps">
+                                        <v-app app>
+                                            <form class="text-center border border-light p-5" action="#!">
+                                                <v-stepper v-model="e1">
+                                                    <v-stepper-header>
+                                                      <v-stepper-step :complete="e1 > 1" step="1">Pilih Master Barang</v-stepper-step>
+
+                                                      <v-divider></v-divider>
+
+                                                      <v-stepper-step  step="2">Masukkan Data Detail Barang</v-stepper-step>
+                                                    </v-stepper-header>
+
+                                                    <v-stepper-items>
+                                                      <v-stepper-content step="1">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormName" class="form-control  " placeholder="No">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control " placeholder="Kode Satker">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Satker">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Barang">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Barang">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="NUP">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Merk/Tipe">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Ruangan">
+                                                            </div>
+                                                        </div>
+                                                        <v-btn
+                                                          color="primary"
+                                                          @click="e1 = 2"
+                                                        >
+                                                          Next
+                                                        </v-btn>
+                                                      </v-stepper-content>
+
+                                                      <v-stepper-content step="2">
+                                                        <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="No">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Satker">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Satker">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Barang">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Kode Ruangan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nama Barang">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="NUP">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Merk/Tipe">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Tgl Rekam Pertama">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Tgl Perolehan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Perolehan Pertama">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Mutasi">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Perolehan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Penyusutan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nilai Buku">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="KUANTITAS">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Jml Foto">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Status Penggunaan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Status Pengelolaan">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="No PSP">
+                                                        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Jumlah KIB">
+
+                                                        <v-btn
+                                                          color="primary"
+                                                          @click="e1 = 1"
+                                                        >
+                                                          Back
+                                                        </v-btn>
+
+                                                        <v-btn text>Cancel</v-btn>
+                                                      </v-stepper-content>
+                                                    </v-stepper-items>
+                                                </v-stepper>
+                                            </form>
+                                        </v-app>
+                                    </div>
+
                                     <!-- Default form contact -->
                                 </div>
                                 <div class="modal-footer">
@@ -161,6 +230,8 @@
 @endsection
 
 @push('js')
+@vite(['resources/js/app.js'])
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
 @endpush

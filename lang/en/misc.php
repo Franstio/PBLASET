@@ -8,5 +8,7 @@ return [
     "master-aset-barang-index" => "Data Master Barang",
     "master.satker"=>"Data Satker",
     "home" => "Home",
-    "lokasi" => "Daftar Lokasi"
+    "lokasi" => "Daftar Lokasi -> Gedung",
+    "lokasi.lantai" => "Daftar Lokasi -> Gedung -> Lantai",
+    "lokasi.ruangan" => "Daftar Lokasi -> Gedung -> Lantai -> Ruangan"
 ];

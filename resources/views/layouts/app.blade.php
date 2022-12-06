@@ -20,6 +20,7 @@
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.13.1/css/dataTables.jqueryui.min.css" rel="stylesheet">
+        @vite(['resources/css/app.css'])
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
