@@ -3,34 +3,34 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import './bootstrap';
-import vuetify from './vuetify';
-import Vue  from 'vue';
 
+import './bootstrap';
+import { createApp } from 'vue';
+import Vue  from 'vue';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
-
-//const app = createApp({});
+ import vuetify from './vuetify';
+/* require('./bootstrap');
+ window.Vue = require('vue');
+ Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
+ 
+ const app = new Vue({
+     el: '#apps',
+     vuetify,
+     data()
+     {
+        return {
+            e1 : 1
+        };
+     }
+ });
 
 //import ExampleComponent from './components/ExampleComponent.vue';
 //app.component('example-component', ExampleComponent);
-//require('./bootstrap');
-//window.Vue = require('vue');
-///Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-//window.Vue = Vue;
 
-const app = new Vue({
-    el: '#apps',
-    vuetify,
-    data () {
-        return {
-          e1: 1,
-        }
-      }
-});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -48,5 +48,3 @@ const app = new Vue({
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
-
-//app.mount('#app');
