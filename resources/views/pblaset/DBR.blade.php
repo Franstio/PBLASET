@@ -1,6 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="DBR.html">Daftar Barang Ruangan</a>
+        <!-- Form -->
+        <!-- User -->
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="media align-items-center">
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm font-weight-bold">Admin</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                    <div class="dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome!</h6>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="login.html" class="dropdown-item">
+                        <i class="ni ni-user-run"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+</nav>
+<!-- End Navbar -->
+<!-- Header -->
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
@@ -94,12 +126,11 @@
         </h3>
         <div class="card-body">
             <div id="table" class="table-editable" style="overflow-x:auto;">
-                <table class="table table-bordered table-responsive-md table-striped text-center">
+                <table id="tbl" class="table table-bordered table-responsive-md table-striped text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">Nama Gedung</th>
-                            <th class="text-center">Nomor Lantai</th>
-                            <th class="text-center">Nama Ruangan</th>
+                            <th class="text-center">No </th>
+                            <th class="text-center">Lokasi Penyimpanan</th>
                             <th class="text-center">Kode Barang</th>
                             <th class="text-center">Nama Barang</th>
                             <th class="text-center">Harga</th>
@@ -109,18 +140,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            <td class="pt-3-half" contenteditable="true"></td>
-                            </td>
-                        </tr>
 
                     </tbody>
                 </table>
@@ -132,6 +151,30 @@
 @endsection
 
 @push('js')
+<script>
+    $(function() {
+    var table = $('#tbl').DataTable({
+        processing: true
+        , serverSide: true
+        , ajax: "{{ route('aset.barang.dbr') }}"
+        , columns: [{
+                data: 'DT_RowIndex'
+                , name: 'DT_RowIndex'
+                },
+                {name:"Lokasi",data:"Lokasi"},
+                {name:"Kode_Barang",data:"Kode_Barang"},
+                {name:"Nama_Barang",data:"Nama_Barang"},
+                {name:"Nilai_Mutasi",data:"Nilai_Mutasi"},
+                {name:"NUP",data:"NUP"},
+
+                {name:"Merk_Tipe",data:"Merk_Tipe"},
+
+                {name:"QR",data:"QR"},
+         ]
+    });
+
+});
+</script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

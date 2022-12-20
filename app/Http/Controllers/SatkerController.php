@@ -40,5 +40,13 @@ class SatkerController extends Controller
         $this->service->Delete($kode_satker);
         return Response()->json(["Message"=>"Update Success"],200);
     }
+    public function list(string $nama)
+    {
+        return $this->service->RetrieveSatker($nama);
+    }
+    public function listAll()
+    {
+        return $this->service->RetrieveSatker("");
+    }
 
 }

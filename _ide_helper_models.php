@@ -14,15 +14,49 @@ namespace App\Models{
 /**
  * App\Models\DetailAsetBarang
  *
- * @property string $Merk_Tipe
- * @property string $Nama_Barang
+ * @property int $id
+ * @property int $NUP
+ * @property string $Kondisi
+ * @property string $Tgl_Rekam_Pertama
+ * @property string $Tgl_Perolehan
+ * @property string $Nilai_Perolehan_Pertama
+ * @property string $Nilai_Mutasi
+ * @property string $Nilai_Perolehan
+ * @property string $Nilai_Penyusutan
+ * @property string $Nilai_Buku
+ * @property string $Kuantitas
+ * @property int $jml_foto
+ * @property string $Status_Penggunaan
+ * @property string $Status_Pengelolaan
+ * @property string $No_PSP
+ * @property string $Tgl_PSP
+ * @property int $Jumlah_KIB
  * @property string $Kode_Barang
+ * @property string $Kode_Ruangan
+ * @property string $Kode_Satker
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereJmlFoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereJumlahKIB($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereKodeBarang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereMerkTipe($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNamaBarang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereKodeRuangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereKodeSatker($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereKondisi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereKuantitas($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNUP($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNilaiBuku($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNilaiMutasi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNilaiPenyusutan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNilaiPerolehan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNilaiPerolehanPertama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereNoPSP($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereStatusPengelolaan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereStatusPenggunaan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereTglPSP($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereTglPerolehan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetBarang whereTglRekamPertama($value)
  */
 	class DetailAsetBarang extends \Eloquent {}
 }
@@ -59,7 +93,10 @@ namespace App\Models{
  * @property string $Kode_Pos
  * @property int $SBSK
  * @property int $Optimalisasi
- * @property string $Status_SBSK
+ * @property string $Status_SBSN
+ * @property string $Uraian_Provinsi
+ * @property string $Kode_Provinsi
+ * @property string $Merk_Tipe
  * @property string $Kode_Gedung
  * @property string $Kode_Satker
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung newModelQuery()
@@ -75,11 +112,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKodeGedung($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKodeKabKota($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKodePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKodeProvinsi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKodeSatker($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKondisi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereKuantitas($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereLuasBangunan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereLuasDasarBangunan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereMerkTipe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereNUP($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereNilaiBuku($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereNilaiMutasi($value)
@@ -91,11 +130,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereSBSK($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereStatusPengelolaan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereStatusPenggunaan($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereStatusSBSK($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereStatusSBSN($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereTglPSP($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereTglPerolehan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereTglRekamPertama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereUraianKabKota($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DetailAsetGedung whereUraianProvinsi($value)
  */
 	class DetailAsetGedung extends \Eloquent {}
 }
@@ -138,7 +178,7 @@ namespace App\Models{
  *
  * @property string $Merk_Tipe
  * @property string $Nama_Barang
- * @property int $Kode_Barang
+ * @property string $Kode_Barang
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetBarang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetBarang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetBarang query()
@@ -154,11 +194,13 @@ namespace App\Models{
  * App\Models\MasterAsetGedung
  *
  * @property string $Nama_Gedung
- * @property int $Kode_Gedung
+ * @property string $Kode_Gedung
+ * @property string $Merk_Tipe
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung query()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung whereKodeGedung($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung whereMerkTipe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterAsetGedung whereNamaGedung($value)
  */
 	class MasterAsetGedung extends \Eloquent {}
@@ -185,7 +227,7 @@ namespace App\Models{
  *
  * @property string $Nama_Ruangan
  * @property int $Kode_Lantai
- * @property int $Kode_Ruangan
+ * @property string $Kode_Ruangan
  * @method static \Illuminate\Database\Eloquent\Builder|Ruangan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ruangan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ruangan query()
