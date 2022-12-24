@@ -9,6 +9,7 @@ use App\Models\MasterLokasiGedung;
 use App\Models\Gedung;
 use App\Models\Lantai;
 use App\Models\Ruangan;
+use DB;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -181,6 +182,12 @@ class LokasiService
             ->make(true);
     }
 
+    public function RetrieveLokasiSuggestion(String $lokasi)
+    {
+        $query = "Select Lokasi,Kode_Ruangan From (select Concat(Nama_Gedung,', Lantai-',no_lantai,', ',Nama_Ruangan,' ( ',KOde_Ruangan,' ) ') as Lokasi,Kode_Ruangan From Ruangan inner join Lantai on RUangan.Kode_Lantai=Lantai.id inner join Gedung on Gedung.id=Lantai.KOde_Gedung) tbl Where Lokasi like :lokasi ;";
+        $res = DB::select($query,[":lokasi"=>'%'.$lokasi.'%'] );
+        return response()->json($res);
+    }
 
 
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\SatkerRequest;
 use App\Models\MasterSatker;
+use DB;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -57,5 +58,11 @@ class SatkerService
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+    public function RetrieveSatker(string $nama)
+    {
+        $query = "Select Nama_Satker,Kode_Satker From Master_Satker Where Nama_Satker like :nama";
+        $res = DB::select($query,[":nama"=>"%".$nama."%"]);
+        return response()->json($res);
     }
 }

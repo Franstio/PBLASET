@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="h-100" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,24 +21,33 @@
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.13.1/css/dataTables.jqueryui.min.css" rel="stylesheet">
         @vite(['resources/css/app.css'])
+        <style>
+            .v-application--wrap {
+              min-height: 0vh !important;
+              display: block
+            }
+          </style>
     </head>
-    <body class="{{ $class ?? '' }}">
+    <body class="{{ $class ?? '' }} h-100">
+
+        <div id="apps" class="h-100" >
         @auth()
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-
         <div class="main-content">
-            @include('layouts.navbars.navbar')
-            @yield('content')
+                    @include('layouts.navbars.navbar')
+                    @yield('content')
+
         </div>
 
         @guest()
             @include('layouts.footers.guest')
         @endguest
-
+        </div>
+        @vite(['resources/js/app.js'])
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -47,6 +56,8 @@
         @stack('js')
 
         <!-- Argon JS -->
+
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+
     </body>
 </html>

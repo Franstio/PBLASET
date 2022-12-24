@@ -9,6 +9,7 @@ use App\Http\Controllers\AsetBarangController;
 use App\Http\Controllers\AsetGedungController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\testing;
+use App\Http\Requests\AsetBarangRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -60,7 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('satker/read',[SatkerController::class,"read"])->name("master.satker.read");
     Route::post('satker/update/{kode_satker}',[SatkerController::class,"update"])->name("master.satker.update");
     Route::delete('satker/delete/{kode_satker}',[SatkerController::class,'delete'])->name('master.satker.delete');
-
+    Route::get("satker/list/{nama}",[SatkerController::class,"list"])->name("satker.list");
+    Route::Get("satker/list",[SatkerController::class,"listAll"])->name("satker.list.all");
 
     Route::get('gedung',[AsetGedungController::class,"master_index"])->name("master.gedung");
     Route::post('gedung/create',[AsetGedungController::class,"tambah_data_master"])->name("master.gedung.create");
@@ -73,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("lokasi/gedung/read",[LokasiController::class,"ReadGedung"])->name("lokasi.gedung.read");
     Route::post("lokasi/gedung/update/{kode_gedung}",[LokasiController::class,"UpdateGedung"])->name("lokasi.gedung.update");
     Route::delete("lokasi/gedung/delete/{kode_gedung}",[LokasiController::class,"DeleteGedung"])->name("lokasi.gedung.delete");
-
+    Route::get("lokasi/{lokasi?}",[LokasiController::class,"ListRuangan"])->name("lokasi.list");
     Route::get("lokasi/{nama_gedung}-{kode_gedung}/lantai",[LokasiController::class,"index_lantai"])->name("lokasi.lantai");
     Route::post("lokasi/{nama_gedung}-{kode_gedung}/lantai/create",[LokasiController::class,"CreateLantai"])->name("lokasi.lantai.create");
     Route::get("lokasi/{nama_gedung}-{kode_gedung}/lantai/read",[LokasiController::class,"ReadLantai"])->name("lokasi.lantai.read");
@@ -85,4 +87,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/read",[LokasiController::class,"ReadRuangan"])->name("lokasi.ruangan.read");
     Route::post("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/update/{kode_ruangan}",[LokasiController::class,"UpdateRuangan"])->name("lokasi.ruangan.update");
     Route::delete("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/delete/{kode_ruangan}",[LokasiController::class,"DeleteRuangan"])->name("lokasi.ruangan.delete");
+
+    Route::get("aset/barang/detail",[AsetBarangController::class,"get_data_detail"])->name("aset.barang.detail");
+    Route::get("aset/barang/{nama_barang}",[AsetBarangController::class,"GetListBarang"])->name("aset.barang.list");
+    Route::get("aset/barang/",[AsetBarangController::class,"GetListBarangAll"])->name("aset.barang.all");
+    Route::get("aset/barang/detail/{id}",[AsetBarangController::class,"GetDetails"])->name("aset.barang.details.find");
+    Route::post("aset/barang/detail",[AsetBarangController::class,"InsertDetailAset"])->name("aset.barang.detail.create");
+    Route::post("aset/barang/detail/{id}",[AsetBarangController::class,"UpdateDetailAset"])->name("aset.barang.detail.update");
+    Route::delete("aset/barang/detail/{id}",[AsetBarangController::class,"DeleteDetailAset"])->name("aset.barang.detail.delete");
+
+    Route::get("aset/DBR",[DBRController::class,"ReadDBR"])->name("aset.barang.dbr");
 });

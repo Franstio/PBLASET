@@ -5,8 +5,8 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
 import Vue  from 'vue';
+import FormPengelolahanComponent from './components/FormPengelolahanComponent.vue';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -16,17 +16,13 @@ import Vue  from 'vue';
 /* require('./bootstrap');
  window.Vue = require('vue');
  Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
- 
+ Vue.component('form-aset-barang', FormPengelolahanComponent);
+
  const app = new Vue({
      el: '#apps',
-     vuetify,
-     data()
-     {
-        return {
-            e1 : 1
-        };
-     }
+     vuetify
  });
+ window.app = app;
 
 //import ExampleComponent from './components/ExampleComponent.vue';
 //app.component('example-component', ExampleComponent);
