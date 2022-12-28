@@ -15,3 +15,5 @@ yarn-error.log
 /.idea
 /.vscode
 _ide_helper.php
+composer.lock
+package-lock.json
