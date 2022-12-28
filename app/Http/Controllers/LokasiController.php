@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lantai;
 use App\Http\Requests\LokasiGedungRequest;
 use App\Http\Requests\LokasiLantaiRequest;
+use App\Http\Requests\LokasiRequest;
 use App\Http\Requests\LokasiRuanganRequest;
 use App\Services\LokasiService;
 use Illuminate\Http\Request;
@@ -99,6 +100,9 @@ class LokasiController extends Controller
     {
         return $this->service->RetrieveLokasiSuggestion($lokasi);
     }
-
+    public function RetrieveLocation(LokasiRequest $req)
+    {
+        return $this->service->RetrieveLocation($req);
+    }
 
 }

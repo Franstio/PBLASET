@@ -1,86 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-    <div class="container-fluid">
-        <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="DBR.html">Daftar Barang Ruangan</a>
-        <!-- Form -->
-        <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-            <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="media align-items-center">
-                        <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm font-weight-bold">Admin</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <div class="dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome!</h6>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item">
-                        <i class="ni ni-user-run"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-</nav>
-<!-- End Navbar -->
 <!-- Header -->
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
             <!-- Card stats -->
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gedung</button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $year ?? "Tahun" }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="">Gedung Utama</a>
-                    <a class="dropdown-item" href="">Bengkel/Workshop</a>
-                    <a class="dropdown-item" href="">Asrama Mahasiswa</a>
-                    <a class="dropdown-item" href="">Teaching Factory</a>
-                    <a class="dropdown-item" href="">Tower Monas</a>
-                    <a class="dropdown-item" href="">Hanggar (HK)</a>
-                    <a class="dropdown-item" href="">Nongsa Digital Park</a>
-                    <a class="dropdown-item" href="">lain lain</a>
-                    <a class="dropdown-item" href="">Rincian Parkiran</a>
+                    <a class="dropdown-item" href="{{ route("DBR") }}">ALL</a>
+                    @foreach ($listYear as $tahun)
+                    <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data) }}">{{ $tahun->Tahun_Data }}</a>
+                    @endforeach
                 </div>
             </div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lantai</button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["gedung"][0]->Nama_Gedung ?? "Gedung"  }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="">1</a>
-                    <a class="dropdown-item" href="">2</a>
-                    <a class="dropdown-item" href="">3</a>
-                    <a class="dropdown-item" href="">4</a>
-                    <a class="dropdown-item" href="">5</a>
-                    <a class="dropdown-item" href="">6</a>
-                    <a class="dropdown-item" href="">7</a>
-                    <a class="dropdown-item" href="">8</a>
-                    <a class="dropdown-item" href="">9</a>
-                    <a class="dropdown-item" href="">10</a>
+                    @foreach ($data["listGedung"] as $gedung)
+                        <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data) }}?kode_gedung={{ $gedung->id }}">{{ $gedung->Nama_Gedung }}</a>
+                    @endforeach
                 </div>
             </div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ruangan</button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["lantai"][0]->no_lantai ?? "Lantai" }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="">RUANG DOSEN & ADMINISTRASI</a>
-                    <a class="dropdown-item" href="">QUESTION BANK</a>
-                    <a class="dropdown-item" href="">CLASS ROOM 2</a>
-                    <a class="dropdown-item" href="">RUANG GM</a>
-                    <a class="dropdown-item" href="">CLASS ROOM 1</a>
-                    <a class="dropdown-item" href="">TOILET PRIA 0.1</a>
-                    <a class="dropdown-item" href="">TOILET WANITA 0.1</a>
-                    <a class="dropdown-item" href="">JANITOR ROOM</a>
-                    <a class="dropdown-item" href="">MUSHOLA</a>
-                    <a class="dropdown-item" href="">TEMPAT WUDHU</a>
+                    @foreach ($data["listLantai"] as $lantai)
+                        <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data) }}?kode_gedung={{ $lantai->Kode_Gedung }}&id_lantai={{ $lantai->id }}">{{ $lantai->No_Lantai }}</a>
+                    @endforeach
                 </div>
-                <a class="btn btn-info" href="#" role="button">Export QR</a>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["ruangan"][0]->Nama_Ruangan ?? "Ruangan"}}</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach ($data["listRuangan"] as $ruangan)
+                    <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data)  }}?kode_gedung={{ $ruangan->Kode_Gedung }}&id_lantai={{ $ruangan->Kode_Lantai }}&kode_ruangan={{ $ruangan->Kode_Ruangan }}">{{ $ruangan->Nama_Ruangan }}</a>
+                    @endforeach
+                </div>
+                <a class="btn btn-info" href="{{ route("DBR.Export") }}?kode_gedung={{ $data['gedung'][0]->id ?? "" }}&id_lantai={{ $data['lantai'][0]->id ?? "" }}&kode_ruangan={{ $data['ruangan'][0]->Kode_Ruangan ?? ""}} &year={{ $year }}" role="button">Export QR</a>
                 <!-- Button trigger modal -->
 
                 <!-- Modal -->
@@ -156,7 +114,7 @@
     var table = $('#tbl').DataTable({
         processing: true
         , serverSide: true
-        , ajax: "{{ route('aset.barang.dbr') }}"
+        , ajax: "{{ route('aset.barang.dbr') }}?kode_gedung={{ $data['gedung'][0]->id ?? "" }}&id_lantai={{ $data['lantai'][0]->id ?? "" }}&kode_ruangan={{ $data['ruangan'][0]->Kode_Ruangan ?? ""}}&year={{ $year }}"
         , columns: [{
                 data: 'DT_RowIndex'
                 , name: 'DT_RowIndex'
@@ -164,7 +122,7 @@
                 {name:"Lokasi",data:"Lokasi"},
                 {name:"Kode_Barang",data:"Kode_Barang"},
                 {name:"Nama_Barang",data:"Nama_Barang"},
-                {name:"Nilai_Mutasi",data:"Nilai_Mutasi"},
+                {name:"Nilai_Perolehan_Pertama",data:"Nilai_Perolehan_Pertama"},
                 {name:"NUP",data:"NUP"},
 
                 {name:"Merk_Tipe",data:"Merk_Tipe"},

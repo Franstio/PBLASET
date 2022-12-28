@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\LokasiGedungRequest;
 use App\Http\Requests\LokasiLantaiRequest;
+use App\Http\Requests\LokasiRequest;
 use App\Http\Requests\LokasiRuanganRequest;
 use App\Models\MasterLokasiGedung;
 use App\Models\Gedung;
@@ -188,6 +189,21 @@ class LokasiService
         $res = DB::select($query,[":lokasi"=>'%'.$lokasi.'%'] );
         return response()->json($res);
     }
-
-
+    public function RetrieveLocation(LokasiRequest $req)
+    {
+        $query = "Select g.id as 'Kode_Gedung',g.Nama_Gedung,l.id,l.No_Lantai,r.Kode_Ruangan,r.Nama_Ruangan From Gedung g left join lantai l on g.id=l.kode_gedung left join ruangan r on l.id=r.kode_lantai ".
+        " Where (g.id = :kode_gedung or :kode_gedung2 ='') and (l.id= :id_lantai or :id_lantai2 ='') and (r.Kode_Ruangan= :kode_ruangan or :kode_ruangan2 ='') ";
+        $res = DB::select($query,[":kode_gedung"=>$req->kode_gedung ?? "",":id_lantai"=>$req->id_lantai ?? "",":kode_ruangan"=>$req->kode_ruangan ?? "" ,":kode_gedung2"=>$req->kode_gedung ?? "",":id_lantai2"=>$req->id_lantai ?? "",":kode_ruangan2"=>$req->kode_ruangan ?? ""]);
+        return $res;
+   }
+   public function RetrieveLocation2(Request $req)
+   {
+        $listGedung = Gedung::get();
+        $listLantai = DB::select("Select id,No_Lantai,Kode_Gedung From Lantai where Kode_Gedung=:kode_gedung or :kode_gedung2=''",[":kode_gedung"=>$req->kode_gedung ?? "",":kode_gedung2"=>$req->kode_gedung ?? ""]);
+        $listRuangan = DB::select("Select Kode_Ruangan,Nama_Ruangan,Kode_Lantai,Kode_Gedung From Ruangan r inner join lantai l on l.id=r.Kode_lantai inner join Gedung g on g.id=l.kode_gedung Where r.Kode_Lantai= :kode_lantai or :kode_lantai2 = '' ",[":kode_lantai"=>$req->id_lantai ?? "",":kode_lantai2"=>$req->id_lantai ??""]);
+        $gedung = Gedung::where("id",$req->kode_gedung ?? "")->get();
+        $lantai = Lantai::where("id",$req->id_lantai ?? "" )->get();
+        $ruangan = Ruangan::where("Kode_Ruangan",$req->kode_ruangan ?? "")->get();
+        return ["listGedung"=>$listGedung,"listLantai"=>$listLantai,"listRuangan"=>$listRuangan,"gedung"=>$gedung,"lantai"=>$lantai,"ruangan"=>$ruangan];
+   }
 }

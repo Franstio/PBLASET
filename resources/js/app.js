@@ -7,6 +7,8 @@
 import './bootstrap';
 import Vue  from 'vue';
 import FormPengelolahanComponent from './components/FormPengelolahanComponent.vue';
+import FormImportComponent from './components/FormImportComponent.vue';
+import FormPengelolahanGedungComponent from './components/FormPengelolahanGedungComponent.vue';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -17,7 +19,8 @@ import FormPengelolahanComponent from './components/FormPengelolahanComponent.vu
  window.Vue = require('vue');
  Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
  Vue.component('form-aset-barang', FormPengelolahanComponent);
-
+ Vue.component('form-import', FormImportComponent);
+Vue.component("form-aset-gedung",FormPengelolahanGedungComponent);
  const app = new Vue({
      el: '#apps',
      vuetify

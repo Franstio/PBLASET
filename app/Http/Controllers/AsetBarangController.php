@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AsetBarangRequest;
 use App\Http\Requests\DetailAsetBarangRequest;
+use App\Http\Requests\LokasiRequest;
 use App\Models\DetailAsetBarang;
 use App\Models\DetailAsetGedung;
 use App\Models\MasterAsetBarang;
@@ -61,8 +62,8 @@ class AsetBarangController extends Controller
     }
     public function UpdateDetailAset(String $id,DetailAsetBarangRequest $req)
     {
-        $this->service->UpdateDetailAset($id,$req);
-        return redirect()->back();
+        return $this->service->UpdateDetailAset($id,$req);
+        return redirect()->route("aset.barang.detail");
     }
     public function DeleteDetailAset(String $id)
     {
@@ -81,5 +82,12 @@ class AsetBarangController extends Controller
     {
         return $this->service->RetrieveDetailAsetBarang($id);
     }
-
+    public function Import(LokasiRequest $req)
+    {
+        return $this->service->ImportData($req);
+    }
+    public function Export(LokasiRequest $req,$year)
+    {
+        return $this->service->ExportData($req,$year);
+    }
 }

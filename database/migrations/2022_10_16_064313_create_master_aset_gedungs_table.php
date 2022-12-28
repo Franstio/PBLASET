@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('master_aset_gedung', function (Blueprint $table) {
-            $table->string("Nama_Gedung",24);
+            $table->string("Nama_Gedung",128);
             $table->string("Kode_Gedung",24);
-            $table->string("Merk_Tipe",32);
+            $table->string("Merk_Tipe",128);
             $table->primary("Kode_Gedung");
         });
     }

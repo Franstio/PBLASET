@@ -14,11 +14,14 @@
                     <v-app app>
                         <v-stepper v-model="e1">
                             <v-stepper-header>
-                                <v-stepper-step :complete="e1 > 1" step="1">Pilih Master Barang</v-stepper-step>
+                                <v-stepper-step :complete="e1 > 1" step="1">Pilih Master Gedung</v-stepper-step>
 
                                 <v-divider></v-divider>
 
-                                <v-stepper-step step="2">Masukkan Data Detail Barang</v-stepper-step>
+                                <v-stepper-step step="2">Masukkan Data Detail Gedung Bagian 1</v-stepper-step>
+                                <v-divider></v-divider>
+
+                                <v-stepper-step step="3">Masukkan Data Detail Gedung Bagian 2</v-stepper-step>
                             </v-stepper-header>
 
                             <v-stepper-items>
@@ -45,23 +48,23 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div v-if="master_barang == []">
+                                            <div v-if="master_gedung == []">
                                                 <input readonly type="text" class="form-control" value="Waiting for data">
                                             </div>
                                             <div v-else>
-                                                <input type="text" @change="selectBarang" v-model="pack.Nama_Barang"
-                                                    name="Nama_Barang" class="form-control mb-4" placeholder="Nama Barang"
-                                                    list="list_barang">
-                                                <datalist id="list_barang">
-                                                    <option v-for="barang in master_barang ">{{ barang.Nama_Barang }}
+                                                <input type="text" @change="selectGedung" v-model="pack.Nama_Gedung"
+                                                    name="Nama_Gedung" class="form-control mb-4" placeholder="Nama Gedung"
+                                                    list="list_gedung">
+                                                <datalist id="list_gedung">
+                                                    <option v-for="gedung in master_gedung ">{{ gedung.Nama_Gedung }}
                                                     </option>
                                                 </datalist>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <input type="text" name="Kode_Barang" v-model="pack.Kode_Barang"
+                                            <input type="text" name="Kode_Gedung" v-model="pack.Kode_Gedung"
                                                 id="defaultContactFormEmail" class="form-control mb-4"
-                                                placeholder="Kode Barang">
+                                                placeholder="Kode Gedung">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -74,24 +77,16 @@
                                                 v-model="pack.NUP" placeholder="NUP">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <v-autocomplete @change="selectLokasi" v-model="pack.Lokasi"
-                                                :items="list_lokasi" placeholder="Lokasi Ruangan Penyimpanan Aset" dense
-                                                filled></v-autocomplete>
-                                        </div>
-                                    </div>
                                     <v-btn color="primary" @click="e1 = 2"
                                         :disabled="isValid">
                                         Next
                                     </v-btn>
                                 </v-stepper-content>
 
+                                <form :id="form" method="POST" :action="_url">
                                 <v-stepper-content step="2">
-                                    <form :id="form" method="POST" :action="_url">
                                         <input type="hidden" name="_token" :value="csrf">
-                                        <input type="hidden" v-model="pack.Kode_Barang" name="Kode_Barang" />
-                                        <input type="hidden" v-model="pack.Kode_Ruangan" name="Kode_Ruangan" />
+                                        <input type="hidden" v-model="pack.Kode_Gedung" name="Kode_Gedung" />
                                         <input type="hidden" v-model="pack.Kode_Satker" name="Kode_Satker" />
                                         <input type="hidden" v-model="pack.NUP" name="NUP" />
                                         <div class="row">
@@ -117,7 +112,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4" v-model="details.Nilai_Perolehan_Pertama" name="Nilai_Perolehan_Pertama"
+                                                <input type="text" id="defaultContactFormEmail" class="form-control mb-4"
+                                                    v-model="details.Nilai_Perolehan_Pertama" name="Nilai_Perolehan_Pertama"
                                                     placeholder="Nilai Perolehan Pertama">
                                             </div>
                                             <div class="col">
@@ -181,19 +177,113 @@
                                                     v-model="details.Tgl_PSP" placeholder="Tgl PSP" name="Tgl_PSP">
                                                 </div>
                                             </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" name="SBSK" v-model="details.SBSK"
+                                                placeholder="SBSK"/>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <textarea class="form-control mb-5" row="5" name="Kondisi" placeholder="Kondisi..."
                                                 v-model="details.Kondisi"></textarea>
                                         </div>
-                                    </form>
 
-
-                                    <v-btn color="primary" @click="e1 = 1">
-                                        Back
-                                    </v-btn>
-
+                                    <div class="row">
+                                        <div class="col">
+                                            <v-btn color="primary" @click="e1 = 1">
+                                                Back
+                                                </v-btn>
+                                        </div>
+                                        <div class="col">
+                                            <v-btn color="primary" @click="e1 = 3"
+                                            >
+                                            Next
+                                            </v-btn>
+                                        </div>
+                                    </div>
                                 </v-stepper-content>
+                                <v-stepper-content step="3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <input type="text" id="defaultContactFormEmail" name="Dokumen"
+                                                v-model="details.Dokumen" class="form-control" placeholder="Dokumen">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Kode_Pos" v-model="details.Kode_Pos"
+                                            placeholder="Kode Pos"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Jalan" v-model="details.Jalan"
+                                            placeholder="Jalan"/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Jumlah_Lantai" v-model="details.Jumlah_Lantai"
+                                            placeholder="Jumlah Lantai"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Optimalisasi" v-model="details.Optimalisasi"
+                                            placeholder="Optimalisasi"/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Status_SBSN" v-model="details.Status_SBSN"
+                                            placeholder="Status_SBSN"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Kode_Kab_Kota" v-model="details.Kode_Kab_Kota"
+                                            placeholder="Kode Kabupaten Kota"/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Uraian_Kab_Kota" v-model="details.Uraian_Kab_Kota"
+                                            placeholder="Nama Kabupaten Kota"/>
+                                        </div>
+                                    </div>>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Kode_Provinsi" v-model="details.Kode_Provinsi"
+                                            placeholder="Kode Provinsi"/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Uraian_Provinsi" v-model="details.Uraian_Provinsi"
+                                            placeholder="Nama Provinsi"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <input type="number" id="defaultContactFormEmail" class="form-control " name="Luas_Bangunan"
+                                                    v-model="details.Luas_Bangunan" placeholder="Luas Bangunan">
+                                                </div>
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">m</span>
+                                                </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <input type="number" id="defaultContactFormEmail" class="form-control " name="Luas_Dasar_Bangunan" v-model="details.Luas_Dasar_Bangunan" placeholder="Luas Dasar Bangunan">
+                                                </div>
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">m</span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <v-btn color="primary" @click="e1 = 2">
+                                            Back
+                                        </v-btn>
+                                    </div>
+                                </v-stepper-content>
+                                </form>
                             </v-stepper-items>
                         </v-stepper>
                     </v-app>
@@ -214,6 +304,9 @@
             props:{
                 url: String,
                 id: String,
+                urlDetailGedung: String,
+                urlListSatker : String,
+                urlMasterGedung:String,
                 title: String,
                 form:String,
                 csrf: String,
@@ -223,12 +316,12 @@
                 isValid()
                 {
                     let pack = this.pack;
-                    return (pack.Kode_Ruangan=="") || (pack.Kode_Barang=="") || (pack.Kode_Satker=="" || pack.Kode_Ruangan==undefined) || (pack.Kode_Barang==undefined) || (pack.Kode_Satker==undefined);
+                    return false;// (pack.Kode_Ruangan=="") || (pack.Kode_Gedung=="") || (pack.Kode_Satker=="" || pack.Kode_Ruangan==undefined) || (pack.Kode_Gedung==undefined) || (pack.Kode_Satker==undefined);
                 },
                 isCompleted()
                 {
                     let d = Object.values(this.details);
-                    return  d.some(x =>  x == '');
+                    return false;// d.some(x =>  x == '');
                 }
                 ,_url()
                 {
@@ -239,7 +332,7 @@
                 this.URL = this.$props.url;
                 this.retrieveNama("");
                 this.retrieveSatker("");
-                this.retrieveLokasi("");
+                ///this.retrieveLokasi("");
                 if (this.id != "")
                     this.retrieveDetails(this.id);
             },
@@ -249,12 +342,11 @@
                     e1 : 1,
                     URL: "",
                     pack : {
-                        Nama_Barang:"",
-                        Kode_Barang:"",
+                        Nama_Gedung:"",
+                        Kode_Gedung:"",
                         Merk_Tipe:"",
                         Kode_Satker:"",
                         Nama_Satker:"",
-                        Lokasi: "",
                         Kode_Ruangan:"",
                         NUP:""
                     },
@@ -273,12 +365,23 @@
                         Status_Pengelolaan:"",
                         No_PSP:"",
                         Tgl_PSP:new Date().toLocaleDateString('en-US'),
-                        Jumlah_KIB:""
+                        Jumlah_KIB:"",
+                        Dokumen:"",
+                        Luas_Bangunan: 0,
+                        Luas_Dasar_Bangunan: 0,
+                        Jumlah_Lantai: 1,
+                        Jalan: "",
+                        Kode_Kab_Kota: "",
+                        Uraian_Kab_Kota: "",
+                        Kode_Provinsi: "",
+                        Uraian_Provinsi : "",
+                        Kode_Pos:"",
+                        SBSK:"",
+                        Optimalisasi:"",
+                        Status_SBSN:""
                     },
-                    master_barang:[],
-                    master_satker:[],
-                    list_lokasi: [],
-                    lokasi_dict : []
+                    master_gedung:[],
+                    master_satker:[]
                 };
             },
             methods:{
@@ -289,15 +392,13 @@
                 retrieveDetails(id)
                 {
                     console.log("RETRIEVE");
-                    axios.get("/aset/barang/detail/" + id).then((res)=>{
+                    axios.get(this.$props.urlDetailGedung + "/"+ id).then((res)=>{
                         let d = res.data[0];
                         this.pack = {...this.pack,
-                            Kode_Barang: d.Kode_Barang,
+                            Kode_Gedung: d.Kode_Gedung,
                             Kode_Satker:d.Kode_Satker,
-                            Kode_Ruangan:d.Kode_Ruangan,
                             NUP: d.NUP,
-                            Nama_Barang: d.Nama_Barang,
-                            Lokasi: d.Lokasi,
+                            Nama_Gedung: d.Nama_Gedung,
                             Merk_Tipe: d.Merk_Tipe,
                             Nama_Satker: d.Nama_Satker
                         };
@@ -316,51 +417,58 @@
                             Status_Pengelolaan:d.Status_Pengelolaan,
                             No_PSP:d.No_PSP,
                             Tgl_PSP:d.Tgl_PSP,
-                            Jumlah_KIB:d.Jumlah_KIB
-
+                            Jumlah_KIB:d.Jumlah_KIB,
+                            Dokumen: d.Dokumen,
+                            Luas_Bangunan: d.Luas_Bangunan,
+                            Luas_Dasar_Bangunan : d.Luas_Dasar_Bangunan,
+                            Jumlah_Lantai : d.Jumlah_Lantai,
+                            Jalan: d.Jalan,
+                            Kode_Kab_Kota: d.Kode_Kab_Kota,
+                            Uraian_Kab_Kota: d.Uraian_Kab_Kota,
+                            Kode_Provinsi: d.Kode_Provinsi,
+                            Uraian_Provinsi: d.Uraian_Provinsi,
+                            Kode_Pos : d.Kode_Pos,
+                            Optimalisasi: d.Optimalisasi,
+                            SBSK: d.SBSK,
+                            Status_SBSN: d.Status_SBSN
                         };
+
                         this.$forceUpdate();
+                        console.log({pack:this.pack,details:this.details});
                     });
                 },
-                retrieveLokasi(lokasi)
-                {
-                  let url = "/lokasi/"+lokasi;
-                  axios.get(url).then(response=>{
-                    this.list_lokasi = response.data.map(x=>x.Lokasi);
-                    this.lokasi_dict  = response.data;
-                    console.log({a:this.list_lokasi,b:this.lokasi_dict});
-                  });
-                },
                 retrieveNama(nama){
-                    let url = '/aset/barang/' + nama;
+                    console.log({nama:nama,data:this.$props.urlMasterGedung});
+                    let url = this.$props.urlMasterGedung +"/" + nama;
                      axios.get(url).then((response)=>{
                         console.log({url:url,res:response.data});
-                        this.master_barang = response.data;
+                        this.master_gedung = response.data;
                      });
                 },
                 retrieveSatker(sat){
                     console.log(sat);
-                    let url = '/satker/list/' + sat;
+                    let url = this.$props.urlListSatker + '/' + sat;
                     axios.get(url).then((res)=>{
                         this.master_satker = res.data;
                     });
                 }
                 ,
-                selectBarang(e){
-                    let sel = this.master_barang.filter(x=>x.Nama_Barang==this.pack.Nama_Barang);
+                selectGedung(e){
+                    console.log({mag:this.master_gedung});
+                    let sel = this.master_gedung.filter(x=>x.Nama_Gedung==this.pack.Nama_Gedung);
                     if (sel.length < 1)
                     {
                         this.pack = { ...this.pack,
-                            Nama_Barang:"",
-                            Kode_Barang:"",
+                            Nama_Gedung:"",
+                            Kode_Gedung:"",
                             Merk_Tipe:""
                         };
                         this.retrieveNama("");
                         return;
                     }
-                    this.pack.Kode_Barang = sel[0].Kode_Barang;
+                    this.pack.Kode_Gedung = sel[0].Kode_Gedung;
                     this.pack.Merk_Tipe = sel[0].Merk_Tipe;
-                    this.retrieveNama(this.pack.Nama_Barang);
+                    this.retrieveNama(this.pack.Nama_Gedung);
                 },
                 selectSatker(e){
                     let sel = this.master_satker.filter(x=>x.Nama_Satker==this.pack.Nama_Satker);
@@ -375,22 +483,6 @@
                     }
                     this.pack.Kode_Satker = sel[0].Kode_Satker;
                     this.retrieveSatker(this.pack.Nama_Satker);
-                },
-                selectLokasi(e)
-                {
-                    let sel = this.lokasi_dict.filter(x=>x.Lokasi==this.pack.Lokasi);
-                    if (sel.length < 1)
-                    {
-                        this.pack = {
-                            ...this.pack,
-                            Lokasi: "",
-                            Kode_Ruangan: ""
-                        };
-                        this.retrieveLokasi("");
-                        return;
-                    }
-                    this.pack.Kode_Ruangan= sel[0].Kode_Ruangan;
-                    this.retrieveLokasi(sel[0].Lokasi);
                 }
             }
         }

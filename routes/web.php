@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Route For PBL-ASET
     Route::get("dashboard",[DashboardController::class,'index'])->name("dashboard");
-    Route::get("pengolahan",[PengolahanController::class,'list'])->name("pengolahan");
-    Route::get("DBR",[DBRController::class,"index"])->name("DBR");
+    Route::get("pengolahan/{year?}",[PengolahanController::class,'list'])->name("pengolahan");
+    Route::get("DBR/{year?}",[DBRController::class,"index"])->name("DBR");
 
     Route::get("aset-barang/master",[AsetBarangController::class,"master_index"])->name("master-aset-barang-index");
     Route::post('aset-barang/master/create',[AsetBarangController::class,"tambah_data_master"])->name("tambah-master-aset-barang");
@@ -88,6 +88,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/update/{kode_ruangan}",[LokasiController::class,"UpdateRuangan"])->name("lokasi.ruangan.update");
     Route::delete("lokasi/{nama_gedung}-{kode_gedung}/{no_lantai}-{kode_lantai}/ruangan/delete/{kode_ruangan}",[LokasiController::class,"DeleteRuangan"])->name("lokasi.ruangan.delete");
 
+//    Route::post("lokasi/dbr",[LokasiController::class,"RetrieveLocation"])->name("lokasi.dbr");
+Route::post("aset/import",[AsetBarangController::class,"Import"])->name("aset.barang.import");
+Route::get("aset/export/{year?}",[AsetBarangController::class,"Export"])->name("aset.barang.export");
+
     Route::get("aset/barang/detail",[AsetBarangController::class,"get_data_detail"])->name("aset.barang.detail");
     Route::get("aset/barang/{nama_barang}",[AsetBarangController::class,"GetListBarang"])->name("aset.barang.list");
     Route::get("aset/barang/",[AsetBarangController::class,"GetListBarangAll"])->name("aset.barang.all");
@@ -97,4 +101,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete("aset/barang/detail/{id}",[AsetBarangController::class,"DeleteDetailAset"])->name("aset.barang.detail.delete");
 
     Route::get("aset/DBR",[DBRController::class,"ReadDBR"])->name("aset.barang.dbr");
+
+    Route::post("aset-gedung/import",[AsetGedungController::class,"Import"])->name("aset.gedung.import");
+    Route::get("aset-gedung/export/{year?}",[AsetGedungController::class,"Export"])->name("aset.gedung.export");
+    Route::get("aset/gedung/pengolahan/{year?}",[PengolahanController::class,"listGedung"])->name("aset.gedung.pengolahan");
+
+    Route::get("aset/gedung/detail",[AsetGedungController::class,"get_data_detail"])->name("aset.gedung.detail");
+    Route::get("aset/gedung/{nama_barang}",[AsetGedungController::class,"GetListGedung"])->name("aset.gedung.list");
+    Route::get("aset/gedung/",[AsetGedungController::class,"GetListGedungAll"])->name("aset.gedung.all");
+    Route::get("aset/gedung/detail/{id}",[AsetGedungController::class,"GetDetails"])->name("aset.gedung.details.find");
+    Route::post("aset/gedung/detail",[AsetGedungController::class,"InsertDetailAset"])->name("aset.gedung.detail.create");
+    Route::post("aset/gedung/detail/{id}",[AsetGedungController::class,"UpdateDetailAset"])->name("aset.gedung.detail.update");
+    Route::delete("aset/gedung/detail/{id}",[AsetGedungController::class,"DeleteDetailAset"])->name("aset.gedung.detail.delete");
+
+    Route::get("aset/DBR/export",[DBRController::class,"ExportDBR"])->name("DBR.Export");
 });
+
+
