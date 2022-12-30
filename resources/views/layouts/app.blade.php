@@ -9,10 +9,11 @@
 
         <title>{{ config('app.name', 'Argon Dashboard') }}</title>
         <!-- Favicon -->
-        <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
+        <link href="{{ asset('argon') }}/img/brand/favicon.ico" rel="icon" type="image/png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Extra details for Live View on GitHub Pages -->
+
 
         <!-- Icons -->
         <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
@@ -20,13 +21,14 @@
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.13.1/css/dataTables.jqueryui.min.css" rel="stylesheet">
-        @vite(['resources/css/app.css'])
+        @vite(['resources/css/app.css','resources/js/app.js'])
         <style>
             .v-application--wrap {
               min-height: 0vh !important;
               display: block
             }
           </style>
+          @laravelPWA
     </head>
     <body class="{{ $class ?? '' }} h-100">
 
