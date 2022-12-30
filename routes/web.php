@@ -31,6 +31,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
+Route::get('/resources/js/app.js',function(){
+    return response()->redirectTo( Vite::asset('resources/js/app.js'));
+});
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
