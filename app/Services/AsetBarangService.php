@@ -200,4 +200,10 @@ class AsetBarangService
         $data = DB::select($query);
         return $data;
     }
+    public function DeleteDataYears($year)
+    {
+        $query = "Delete From Detail_Aset_Barang Where Tahun_Data=:tahun";
+        $res = DB::delete($query,[":tahun"=>$year]);
+        return $res;
+    }
 }

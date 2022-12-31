@@ -152,4 +152,11 @@ class AsetGedungService
         return $data;
     }
 
+    public function DeleteDataYears($year)
+    {
+        $query = "Delete From Detail_Aset_Gedung Where Tahun_Data=:tahun";
+        $res = DB::delete($query,[":tahun"=>$year]);
+        return $res;
+    }
+
 }

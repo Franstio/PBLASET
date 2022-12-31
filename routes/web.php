@@ -102,12 +102,13 @@ Route::get("aset/export/{year?}",[AsetBarangController::class,"Export"])->name("
     Route::post("aset/barang/detail",[AsetBarangController::class,"InsertDetailAset"])->name("aset.barang.detail.create");
     Route::post("aset/barang/detail/{id}",[AsetBarangController::class,"UpdateDetailAset"])->name("aset.barang.detail.update");
     Route::delete("aset/barang/detail/{id}",[AsetBarangController::class,"DeleteDetailAset"])->name("aset.barang.detail.delete");
-
+    Route::get("aset/barang/delete/{year}",[AsetBarangController::class,"DeleteDataYears"])->name("aset.barang.delete.year");
     Route::get("aset/DBR",[DBRController::class,"ReadDBR"])->name("aset.barang.dbr");
 
     Route::post("aset-gedung/import",[AsetGedungController::class,"Import"])->name("aset.gedung.import");
     Route::get("aset-gedung/export/{year?}",[AsetGedungController::class,"Export"])->name("aset.gedung.export");
     Route::get("aset/gedung/pengolahan/{year?}",[PengolahanController::class,"listGedung"])->name("aset.gedung.pengolahan");
+    Route::get("aset/gedung/delete/{year}",[AsetGedungController::class,"DeleteDataYears"])->name("aset.gedung.delete.year");
 
     Route::get("aset/gedung/detail",[AsetGedungController::class,"get_data_detail"])->name("aset.gedung.detail");
     Route::get("aset/gedung/{nama_barang}",[AsetGedungController::class,"GetListGedung"])->name("aset.gedung.list");

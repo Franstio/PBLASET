@@ -2,8 +2,15 @@
 
 @section('content')
 
+
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
+        @if($count = Session::get('Count'))
+        <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Deleted {{ $count }} Data</strong>
+        </div>
+        @endif
         <div class="header-body">
             <!-- Card stats -->
             <div class="dropdown">
@@ -27,7 +34,9 @@
                 </button>
                 <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#mdlImport">Import Data</button>
                 <a class="btn btn-info" href="{{ route("aset.barang.export",$year ?? "") }}" role="button">Export Data</a>
-
+                @if ($year != "" && $year != null)
+                    <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route("aset.barang.delete.year",$year) }}" role="button">Delete Data {{ $year }}</a>
+                @endif
                 <form-import csrf="{{  csrf_token()}}" title="Import Data Aset Barang" url="{{ route("aset.barang.import") }}"></form-import>
                 <form-aset-barang csrf="{{  csrf_token()}}" modalid="mdlInsert" url="{{ route("aset.barang.detail.create") }}" id="" title="Tambah Aset Barang" form="frmInsert"></form-aset-barang>
                 <!-- Modal -->

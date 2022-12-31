@@ -15,6 +15,8 @@
                     @endforeach
                 </div>
             </div>
+            @if(isset($listYear))
+
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["gedung"][0]->Nama_Gedung ?? "Gedung"  }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -72,6 +74,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

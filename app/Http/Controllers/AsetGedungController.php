@@ -86,4 +86,10 @@ class AsetGedungController extends Controller
     {
         return $this->service->ExportData($year);
     }
+
+    public function DeleteDataYears($year)
+    {
+        $count = $this->service->DeleteDataYears($year);
+        return redirect()->route("pengolahan",$year)->with("Count",$count);
+    }
 }

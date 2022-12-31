@@ -6,6 +6,12 @@
     <div class="container-fluid">
         <div class="header-body">
             <!-- Card stats -->
+            @if($count = Session::get('Count'))
+            <div class="alert alert-info alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Deleted {{ $count }} Data</strong>
+            </div>
+            @endif
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $year ?? "Tahun" }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -27,7 +33,9 @@
                 </button>
                 <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#mdlImport">Import Data</button>
                 <a class="btn btn-info" href="{{ route("aset.gedung.export",$year ?? "") }}" role="button">Export Data</a>
-
+                @if ($year != "" && $year != null)
+                <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route("aset.gedung.delete.year",$year) }}" role="button">Delete Data {{ $year }}</a>
+                @endif
                 <form-import csrf="{{  csrf_token()}}" title="Import Data Aset Gedung" url="{{ route("aset.gedung.import") }}"></form-import>
                 <form-aset-gedung csrf="{{  csrf_token()}}" modalid="mdlInsert" url-detail-gedung="{{ route("aset.gedung.details.find","") }}" url-list-satker="{{ route("satker.list","") }}" url-master-gedung="{{ route("aset.gedung.list","") }}" url="{{ route("aset.gedung.detail.create") }}" id="" title="Tambah Aset Gedung" form="frmInsert"></form-aset-gedung>
                 <!-- Modal -->
