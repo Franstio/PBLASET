@@ -12,9 +12,10 @@ use App\Models\MasterAsetBarang;
 use App\Models\MasterSatker;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Request;
 
-class AsetBarangImport implements ToCollection
+class AsetBarangImport implements ToCollection,WithCalculatedFormulas
 {
     private LokasiRequest $req;
     public function __construct(LokasiRequest $req)
@@ -61,7 +62,7 @@ class AsetBarangImport implements ToCollection
         $cols = $this->getMap();
         foreach ($list as $item)
         {
-            $data = $item->toArray();
+            $data = (array)$item;
             $temp = [];
             for ($i=0;$i<count($data);$i++)
             {
@@ -78,6 +79,7 @@ class AsetBarangImport implements ToCollection
     public function collection(Collection $collection)
     {
         $collection = $collection->forget(0);
+        $collection = collect($collection->toArray(null, true));
         $collection = $this->CreateMapCollection($collection);
         foreach ($collection as $item)
         {
@@ -113,7 +115,7 @@ class AsetBarangImport implements ToCollection
     }
     public function HandleLokasi(Collection $data)
     {
-        $item = $data->only(["Nama_Gedung","No_Lantai","Nama_Ruangan"])->toArray();
+        $item = $data->only(["Nama_Gedung","No_Lantai","Nama_Ruangan"])->toArray(null,true);
         $gedung = Gedung::where("Nama_Gedung","=",$data["Nama_Gedung"]);
         $dataGedung = $gedung->get()->first();
         if ($gedung->count() < 1)

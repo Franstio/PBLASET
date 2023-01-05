@@ -9,13 +9,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <v-app app>
                         <form id="frmImport" method="POST" :Action="url" enctype="multipart/form-data">
                             <input :value="csrf" type="hidden" name="_token"/>
                             <input class="form-control mb-2" name="Tahun" placeholder="Tahun.." type="number" :value="tahun" step="1"/>
                             <input class="form-control" placeholder="Upload File Here" name="import_file" type="file" />
                         </form>
-                    </v-app>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

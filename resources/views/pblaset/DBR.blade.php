@@ -21,7 +21,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["gedung"][0]->Nama_Gedung ?? "Gedung"  }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach ($data["listGedung"] as $gedung)
-                        <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data) }}?kode_gedung={{ $gedung->id }}">{{ $gedung->Nama_Gedung }}</a>
+                        <a class="dropdown-item" href="{{ route("DBR",$year) }}?kode_gedung={{ $gedung->id }}">{{ $gedung->Nama_Gedung }}</a>
                     @endforeach
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["lantai"][0]->no_lantai ?? "Lantai" }}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach ($data["listLantai"] as $lantai)
-                        <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data) }}?kode_gedung={{ $lantai->Kode_Gedung }}&id_lantai={{ $lantai->id }}">{{ $lantai->No_Lantai }}</a>
+                        <a class="dropdown-item" href="{{ route("DBR",$year) }}?kode_gedung={{ $lantai->Kode_Gedung }}&id_lantai={{ $lantai->id }}">{{ $lantai->No_Lantai }}</a>
                     @endforeach
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $data["ruangan"][0]->Nama_Ruangan ?? "Ruangan"}}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach ($data["listRuangan"] as $ruangan)
-                    <a class="dropdown-item" href="{{ route("DBR",$tahun->Tahun_Data)  }}?kode_gedung={{ $ruangan->Kode_Gedung }}&id_lantai={{ $ruangan->Kode_Lantai }}&kode_ruangan={{ $ruangan->Kode_Ruangan }}">{{ $ruangan->Nama_Ruangan }}</a>
+                    <a class="dropdown-item" href="{{ route("DBR",$year)  }}?kode_gedung={{ $ruangan->Kode_Gedung }}&id_lantai={{ $ruangan->Kode_Lantai }}&kode_ruangan={{ $ruangan->Kode_Ruangan }}">{{ $ruangan->Nama_Ruangan }}</a>
                     @endforeach
                 </div>
                 <a class="btn btn-info" href="{{ route("DBR.Export") }}?kode_gedung={{ $data['gedung'][0]->id ?? "" }}&id_lantai={{ $data['lantai'][0]->id ?? "" }}&kode_ruangan={{ $data['ruangan'][0]->Kode_Ruangan ?? ""}} &year={{ $year }}" role="button">Export QR</a>

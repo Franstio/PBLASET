@@ -31,7 +31,8 @@
           @laravelPWA
     </head>
     <body class="{{ $class ?? '' }} h-100">
-
+        <v-app>
+            <v-content>
         <div id="apps" class="h-100" >
         @auth()
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -41,8 +42,8 @@
         @endauth
         <div class="main-content">
                     @include('layouts.navbars.navbar')
-                    @yield('content')
 
+                        @yield('content')
         </div>
 
         @guest()
@@ -61,5 +62,7 @@
 
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 
+    </v-content>
+</v-app>
     </body>
 </html>

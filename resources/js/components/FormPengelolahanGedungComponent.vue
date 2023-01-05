@@ -11,7 +11,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <v-app app>
                         <v-stepper v-model="e1">
                             <v-stepper-header>
                                 <v-stepper-step :complete="e1 > 1" step="1">Pilih Master Gedung</v-stepper-step>
@@ -286,7 +285,6 @@
                                 </form>
                             </v-stepper-items>
                         </v-stepper>
-                    </v-app>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

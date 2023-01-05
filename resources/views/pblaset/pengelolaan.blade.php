@@ -37,9 +37,7 @@
                 @if ($year != "" && $year != null)
                     <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route("aset.barang.delete.year",$year) }}" role="button">Delete Data {{ $year }}</a>
                 @endif
-                <form-import csrf="{{  csrf_token()}}" title="Import Data Aset Barang" url="{{ route("aset.barang.import") }}"></form-import>
-                <form-aset-barang csrf="{{  csrf_token()}}" modalid="mdlInsert" url="{{ route("aset.barang.detail.create") }}" id="" title="Tambah Aset Barang" form="frmInsert"></form-aset-barang>
-                <!-- Modal -->
+                                <!-- Modal -->
 
             </div>
         </div>
@@ -90,8 +88,12 @@
         </div>
     </div>
 </div>
+<v-app>
+    <form-aset-barang csrf="{{  csrf_token()}}" url="{{ route("aset.barang.detail.update","1") }}" id="" modalid="mdlUpdate" form="frmUpdate "></form-aset-barang>
+    <form-import csrf="{{  csrf_token()}}" title="Import Data Aset Barang" url="{{ route("aset.barang.import") }}"></form-import>
+    <form-aset-barang csrf="{{  csrf_token()}}" modalid="mdlInsert" url="{{ route("aset.barang.detail.create") }}" id="" title="Tambah Aset Barang" form="frmInsert"></form-aset-barang>
+</v-app>
 
-<form-aset-barang csrf="{{  csrf_token()}}" url="{{ route("aset.barang.detail.update","1") }}" id="" modalid="mdlUpdate" form="frmUpdate "></form-aset-barang>
 @endsection
 
 @push('js')

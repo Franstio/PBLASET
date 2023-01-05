@@ -36,9 +36,7 @@
                 @if ($year != "" && $year != null)
                 <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route("aset.gedung.delete.year",$year) }}" role="button">Delete Data {{ $year }}</a>
                 @endif
-                <form-import csrf="{{  csrf_token()}}" title="Import Data Aset Gedung" url="{{ route("aset.gedung.import") }}"></form-import>
-                <form-aset-gedung csrf="{{  csrf_token()}}" modalid="mdlInsert" url-detail-gedung="{{ route("aset.gedung.details.find","") }}" url-list-satker="{{ route("satker.list","") }}" url-master-gedung="{{ route("aset.gedung.list","") }}" url="{{ route("aset.gedung.detail.create") }}" id="" title="Tambah Aset Gedung" form="frmInsert"></form-aset-gedung>
-                <!-- Modal -->
+                               <!-- Modal -->
 
             </div>
         </div>
@@ -100,8 +98,11 @@
         </div>
     </div>
 </div>
-
+<v-app>
+<form-import csrf="{{  csrf_token()}}" title="Import Data Aset Gedung" url="{{ route("aset.gedung.import") }}"></form-import>
+<form-aset-gedung csrf="{{  csrf_token()}}" modalid="mdlInsert" url-detail-gedung="{{ route("aset.gedung.details.find","") }}" url-list-satker="{{ route("satker.list","") }}" url-master-gedung="{{ route("aset.gedung.list","") }}" url="{{ route("aset.gedung.detail.create") }}" id="" title="Tambah Aset Gedung" form="frmInsert"></form-aset-gedung>
 <form-aset-gedung csrf="{{  csrf_token()}}" url="{{ route("aset.gedung.detail.update","1") }}" id="" modalid="mdlUpdate" form="frmUpdate" url-detail-gedung="{{ route("aset.gedung.details.find","") }}" url-list-satker="{{ route("satker.list","") }}" url-master-gedung="{{ route("aset.gedung.list","") }}"></form-aset-gedung>
+</v-app>
 @endsection
 
 @push('js')

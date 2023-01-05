@@ -8,8 +8,9 @@ use App\Models\MasterAsetGedung;
 use App\Models\MasterSatker;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-class AsetGedungImport implements ToCollection
+class AsetGedungImport implements ToCollection,WithCalculatedFormulas
 {
     private LokasiRequest $req;
     public function __construct(LokasiRequest $req)
@@ -56,7 +57,7 @@ class AsetGedungImport implements ToCollection
         $cols = $this->getMap();
         foreach ($list as $item)
         {
-            $data = $item->toArray();
+            $data = (array)$item;
             $temp = [];
             for ($i=0;$i<count($data);$i++)
             {
@@ -73,6 +74,7 @@ class AsetGedungImport implements ToCollection
     public function collection(Collection $collection)
     {
         $collection = $collection->forget(0);
+        $collection = collect($collection->toArray(null,true));
         $collection = $this->CreateMapCollection($collection);
         foreach ($collection as $item)
         {
