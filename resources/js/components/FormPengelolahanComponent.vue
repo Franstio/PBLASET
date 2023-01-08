@@ -343,6 +343,7 @@ export default {
                     Jumlah_KIB: d.Jumlah_KIB
 
                 };
+                this.retrieveLokasi("");
                 this.$forceUpdate();
             });
         },
