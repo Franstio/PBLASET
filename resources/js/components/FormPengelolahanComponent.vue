@@ -240,7 +240,8 @@ export default {
     computed: {
         isValid() {
             let pack = this.pack;
-            return (pack.Kode_Ruangan == "") || (pack.Kode_Barang == "") || (pack.Kode_Satker == "" || pack.Kode_Ruangan == undefined) || (pack.Kode_Barang == undefined) || (pack.Kode_Satker == undefined);
+            console.log({pack: this.pack});
+            return (pack.Kode_Ruangan == "") || (pack.Kode_Barang == "") || (pack.Kode_Satker == "" || pack.Kode_Ruangan == undefined) || (pack.Kode_Barang == undefined) || (pack.Kode_Satker == undefined) || (pack.NUP == undefined || pack.NUP == "");
         },
         isCompleted() {
             let d = Object.values(this.details);
