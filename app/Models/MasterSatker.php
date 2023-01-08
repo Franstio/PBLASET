@@ -9,7 +9,7 @@ class MasterSatker extends Model
 {
     use HasFactory;
     protected $table = "master_satker";
-    protected $primaryKey = 'Kode_Satker';
+//    protected $primaryKey = 'Kode_Satker';
     public $timestamps = false;
     protected $fillable = [ "Kode_Satker","Nama_Satker" ];
 }
