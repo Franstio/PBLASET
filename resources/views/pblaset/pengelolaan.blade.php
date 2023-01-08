@@ -106,8 +106,8 @@
             $("#frmUpdate").attr("action",url);
             $("#mdlUpdate").modal("show");
             console.log({id: data.id});
-            window.app.$children[window.app.$children.length-1].setUrl(url);
-            window.app.$children[window.app.$children.length-1].retrieveDetails(data.id);
+            window.app.$children[0].$children[0].setUrl(url);
+            window.app.$children[0].$children[0].retrieveDetails(data.id);
         }
         function Delete(data)
         {

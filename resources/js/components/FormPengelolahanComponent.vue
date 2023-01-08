@@ -309,8 +309,10 @@ export default {
         },
         retrieveDetails(id) {
             console.log("RETRIEVE");
+            this.pack = {};
             axios.get("/aset/barang/detail/" + id).then((res) => {
                 let d = res.data[0];
+                console.log({d:d});
                 this.pack = {
                     ...this.pack,
                     Kode_Barang: d.Kode_Barang,
@@ -346,7 +348,7 @@ export default {
         },
         retrieveLokasi(lokasi) {
             this.isLoading = true;
-            let url = "/lokasi/" + lokasi;
+            let url = "/lokasi/" + lokasi ?? "";
             axios.get(url).then(response => {
                 this.list_lokasi = response.data.map(x => x.Lokasi);
                 this.lokasi_dict = response.data;

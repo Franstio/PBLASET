@@ -114,8 +114,8 @@
             url = url.replace("test",data.id);
             $("#frmUpdate").attr("action",url);
             console.log({id: data.id});
-            window.app.$children[window.app.$children.length-1].setUrl(url);
-            window.app.$children[window.app.$children.length-1].retrieveDetails(data.id);
+            window.app.$children[0].$children[window.app.$children[0].$children.length-1].setUrl(url);
+            window.app.$children[0].$children[window.app.$children[0].$children.length-1].retrieveDetails(data.id);
             $("#mdlUpdate").modal("show");
         }
         function Delete(data)

@@ -2,8 +2,8 @@
 <template>
     <div class="modal fade" :id="modalid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg w-100" role="document">
+            <div class="modal-content w-100">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -187,12 +187,12 @@
                                         </div>
 
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-1">
                                             <v-btn color="primary" @click="e1 = 1">
                                                 Back
                                                 </v-btn>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-1">
                                             <v-btn color="primary" @click="e1 = 3"
                                             >
                                             Next
@@ -254,33 +254,31 @@
                                             placeholder="Nama Provinsi"/>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col">
                                             <div class="input-group">
                                                 <input type="number" id="defaultContactFormEmail" class="form-control " name="Luas_Bangunan"
                                                     v-model="details.Luas_Bangunan" placeholder="Luas Bangunan">
-                                                </div>
 
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">m</span>
                                                 </div>
+                                            </div>
                                         </div>
 
                                         <div class="col">
                                             <div class="input-group">
                                                 <input type="number" id="defaultContactFormEmail" class="form-control " name="Luas_Dasar_Bangunan" v-model="details.Luas_Dasar_Bangunan" placeholder="Luas Dasar Bangunan">
-                                                </div>
 
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">m</span>
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <v-btn color="primary" @click="e1 = 2">
+                                    <v-btn color="primary" @click="e1 = 2">
                                             Back
-                                        </v-btn>
-                                    </div>
+                                    </v-btn>
                                 </v-stepper-content>
                                 </form>
                             </v-stepper-items>
