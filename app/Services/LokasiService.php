@@ -93,7 +93,7 @@ class LokasiService
             return redirect()->back()->withErrors(["Error"=>"Kode Lantai tidak dapat ditemukan"]);
         $updated = $existed->update($request->except("_token"));
     }
-    public function DeleteLantai(String $no_lantai,String $kode_gedung)
+    public function DeleteLantai(String $kode_gedung,String $no_lantai)
     {
         $existed = Lantai::where([
             ["no_lantai",$no_lantai],

@@ -145,7 +145,10 @@
             , data: {
                 _token: '{{ csrf_token() }}'
                 , _method: 'DELETE'
-            }
+            },
+            error:function(err){
+                console.log(err);
+            $("#tbl").DataTable().ajax.reload();}
         }).done(function() {
             $("#tbl").DataTable().ajax.reload();
         });

@@ -94,7 +94,7 @@ class LokasiController extends Controller
     public function DeleteRuangan($kode_gedung,$nama_gedung,$no_lantai,$kode_lantai,$kode_ruangan)
     {
         $this->service->DeleteRuangan($kode_ruangan,$kode_lantai);
-        return redirect()->back();
+        return response()->json("ok");
     }
     public function ListRuangan(string $lokasi="")
     {
