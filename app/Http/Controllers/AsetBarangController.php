@@ -86,7 +86,7 @@ class AsetBarangController extends Controller
     {
         return $this->service->ImportData($req);
     }
-    public function Export(LokasiRequest $req,$year)
+    public function Export(LokasiRequest $req,$year="")
     {
         return $this->service->ExportData($req,$year);
     }

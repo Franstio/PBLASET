@@ -193,9 +193,9 @@ class AsetBarangService
         $data = DB::select($query, [":kode_gedung"=>$req->kode_gedung ?? "",":id_lantai"=>$req->id_lantai ?? "",":kode_ruangan"=>$req->kode_ruangan ?? "" ,":kode_gedung2"=>$req->kode_gedung ?? "",":id_lantai2"=>$req->id_lantai ?? "",":kode_ruangan2"=>$req->kode_ruangan ?? ""]);*/
 
     }
-    public function ExportData(LokasiRequest $req,$year)
+    public function ExportData(LokasiRequest $req,$year=null)
     {
-        return Excel::download(new AsetBarangExport($req,$year),"Data-Aset-".$year ?? "ALL  ".".xlsx");
+        return Excel::download(new AsetBarangExport($req,$year),"Data-Aset-".($year =="" ? "ALL" : $year).".xlsx");
     }
     public function GetYears()
     {
