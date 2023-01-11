@@ -142,7 +142,7 @@ class AsetGedungService
     }
     public function ExportData($year)
     {
-        $name = "Data-Aset-Gedung-". ($year ?? "ALL").".xlsx";
+        $name = "Data-Aset-Gedung-". ($year == ""?  "ALL"  : $year).".xlsx";
         return Excel::download(new AsetGedungExport($year),$name);
     }
     public function GetYears()

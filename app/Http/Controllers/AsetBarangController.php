@@ -62,8 +62,8 @@ class AsetBarangController extends Controller
     }
     public function UpdateDetailAset(String $id,DetailAsetBarangRequest $req)
     {
-        return $this->service->UpdateDetailAset($id,$req);
-        return redirect()->route("aset.barang.detail");
+        $this->service->UpdateDetailAset($id,$req);
+        return to_route("pengolahan");
     }
     public function DeleteDetailAset(String $id)
     {

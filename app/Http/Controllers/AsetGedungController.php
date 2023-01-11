@@ -58,8 +58,8 @@ class AsetGedungController extends Controller
     }
     public function UpdateDetailAset(String $id,DetailAsetGedungRequest $req)
     {
-        return $this->service->UpdateDetailAset($id,$req);
-        return redirect()->route("aset.barang.detail");
+        $this->service->UpdateDetailAset($id,$req);
+        return redirect()->route("aset.gedung.pengolahan");
     }
     public function DeleteDetailAset(String $id)
     {
@@ -82,7 +82,7 @@ class AsetGedungController extends Controller
     {
         return $this->service->ImportData($req);
     }
-    public function Export($year)
+    public function Export($year = "")
     {
         return $this->service->ExportData($year);
     }
